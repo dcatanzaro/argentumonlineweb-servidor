@@ -18,12 +18,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/ArgentumOnlineWeb/Servidor.git"
+    "url": "git+ssh://git@github.com:dcatanzaro/argentumonlineweb-cliente.git"
   },
-  "author": "",
+  "author": "Damián Catanzaro",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/ArgentumOnlineWeb/Servidor/issues"
+    "url": "https://github.com/dcatanzaro/argentumonlineweb-servidor/issues"
   },
-  "homepage": "https://gitlab.com/ArgentumOnlineWeb/Servidor#README"
+  "homepage": "https://github.com/dcatanzaro/argentumonlineweb-servidor/blob/master/README.md"
 }
