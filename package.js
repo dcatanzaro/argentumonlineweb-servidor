@@ -70,11 +70,11 @@ function Package() {
         changeSeguro: 17
     };
 
-    this.bufferRcv = new ByteBuffer(0);
-    this.bufferSnd = new ByteBuffer(0);
+    this.bufferRcv = new ByteBuffer(ByteBuffer.DEFAULT_CAPACITY, true);
+    this.bufferSnd = new ByteBuffer(ByteBuffer.DEFAULT_CAPACITY, true);
 
     this.setData = function(data) {
-        this.bufferRcv = new ByteBuffer.wrap(data);
+        this.bufferRcv = new ByteBuffer.wrap(data, 'utf8', true);
     };
 
     this.getPackageID = function() {
@@ -84,7 +84,7 @@ function Package() {
     };
 
     this.setPackageID = function(packageID) {
-        this.bufferSnd = new ByteBuffer(0);
+        this.bufferSnd = new ByteBuffer(ByteBuffer.DEFAULT_CAPACITY, true);
         this.writeByte(packageID);
     };
 
