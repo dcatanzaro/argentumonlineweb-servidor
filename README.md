@@ -46,5 +46,7 @@ $ node server.js
 
 ### Contribuir
 Argentum Online Web pasa a estar desarrollado por todos!
+
 Son libres de cargar nuevas [issues](https://github.com/dcatanzaro/argentumonlineweb-servidor/issues) y enviar sus Pull Requests.
-Cada Pull Requests que se haga se verá reflejada en el servidor oficial! http://argentumonlineweb.com/
+
+Cada Pull Request que se haga se verá reflejada en el servidor oficial! http://argentumonlineweb.com/
