@@ -1,0 +1,29 @@
+{
+  "name": "argentumonlineweb_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "bytebuffer": "^4.0.0",
+    "mysql": "^2.9.0",
+    "bcrypt-nodejs": "^0.0.3",
+    "ws": "^0.8.0",
+    "pathfinding": "^0.4.17",
+    "forever": "^0.15.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/ArgentumOnlineWeb/Servidor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/ArgentumOnlineWeb/Servidor/issues"
+  },
+  "homepage": "https://gitlab.com/ArgentumOnlineWeb/Servidor#README"
+}
