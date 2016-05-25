@@ -10,7 +10,7 @@ Importar la base de datos 'aoweb.sql' en MySQL
 
 Cambiar sus credenciales de MySQL en 'database.js'
 
-```
+```js
 var database = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -29,6 +29,10 @@ Iniciar servidor
 $ node server.js
 ```
 
+### Próximo a desarrollar
+* Documentar
+* Refactorizar
+
 ### Desarrolladores
 * [Damián Catanzaro](https://ar.linkedin.com/in/damiancatanzaro)
 * [Juan Gallo](https://ar.linkedin.com/in/juangallo)
@@ -39,3 +43,8 @@ $ node server.js
 
 ### Agradecimientos
 * [Lucas Panichella](https://ar.linkedin.com/in/lucas-panichella-bb121252) - Nuevos diseños
+
+### Contribuir
+Argentum Online Web pasa a estar desarrollado por todos!
+Son libres de cargar nuevas [issues](https://github.com/dcatanzaro/argentumonlineweb-servidor/issues) y enviar sus Pull Requests.
+Cada Pull Requests que se haga se verá reflejada en el servidor oficial! http://argentumonlineweb.com/
