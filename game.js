@@ -2698,7 +2698,96 @@ function Game() {
             funct.dumpError(err);
         }
     };
-
+     this.invocarNPC = function(idUser, spawnx, spawny, idNpc) {
+            var caster = vars.personajes[idUser];
+            var datNpc = vars.datNpc[idNpc];
+            var tmpNPC = {
+                pos: {
+                    x: 0,
+                    y: 0
+                },
+                gold: 0,
+                heading: 2,
+                moveOffsetX: 0,
+                moveOffsetY: 0,
+                inmovilizado: 0,
+                paralizado: 0,
+                fxId: 0,
+                frameFxCounter: 0,
+                zonaSegura: 0,
+                exp: 0,
+                isNpc: true,
+                drop: [],
+                rute: [],
+                cooldownAtaque: 0,
+                cooldownParalizado: 0,
+                aguaValida: 0,
+                desc: ""
+            }
+            tmpNPC.pos.x = parseInt(spawnx);
+            tmpNPC.pos.y = parseInt(spawny);
+            tmpNPC.nameCharacter = datNpc.name;
+            tmpNPC.color = "white";
+            tmpNPC.isNpc = true;
+            tmpNPC.idBody = datNpc.idBody;
+            tmpNPC.idHead = datNpc.idHead;
+            tmpNPC.movement = datNpc.movement;
+            tmpNPC.npcType = parseInt(datNpc.npcType);
+            if (datNpc.gold)
+                tmpNPC.gold = datNpc.gold;
+            tmpNPC.hp = datNpc.hp;
+            tmpNPC.maxHp = datNpc.maxHp;
+            tmpNPC.minHit = datNpc.minHit;
+            tmpNPC.maxHit = datNpc.maxHit;
+            tmpNPC.def = datNpc.def;
+            tmpNPC.poderAtaque = datNpc.poderAtaque;
+            tmpNPC.poderEvasion = datNpc.poderEvasion;                            
+                                
+            tmpNPC.id = game.createId();
+            tmpNPC.map = user.map;
+            tmpNPC.summonedBy = user.id; // avoids to be attacked by them
+            
+            tmpNPC.exp = 0 
+            tmpNPC.rute = [];
+     
+            vars.npcs[tmpNPC.id] = tmpNPC;
+            vars.npcs[tmpNPC.id].cooldownAtaque = +Date.now() + 4000;
+    
+            if (tmpNPC.movement == 3) {
+                vars.areaNpc[tmpNPC.id] = [];
+            }
+    
+            vars.mapData[vars.npcs[tmpNPC.id].map][vars.npcs[tmpNPC.id].pos.y][vars.npcs[tmpNPC.id].pos.x].id = tmpNPC.id;
+    
+            game.loopArea(vars.clients[idUser], function(target) {
+                if (!target.isNpc) {
+                    handleProtocol.sendNpc(tmpNPC);
+                    socket.send(vars.clients[target.id]);
+    
+                    if (tmpNPC.movement == 3 && !target.dead) {
+                        if (target.id != user.id) {
+                            vars.areaNpc[tmpNPC.id].push(target.id);
+                        }
+    
+                    }
+    
+                }
+            });
+    
+            setTimeout(function() {
+                idNpc = tmpNPC.id;
+                var npc = vars.npcs[idNpc];
+                vars.mapData[npc.map][npc.pos.y][npc.pos.x].id = 0;
+                for (var indexNpc in vars.areaNpc[idNpc]) {
+                    handleProtocol.deleteCharacter(idNpc, vars.clients[vars.areaNpc[idNpc][indexNpc]]);
+                }
+               game.npcLoopArea(idNpc, function(target) {
+                    handleProtocol.deleteCharacter(idNpc, vars.clients[target.id]);
+                });
+                vars.areaNpc[idNpc] = 0;
+            }, 45000); // <-- duración de las invocaciones. No recuerdo cuál es ahora mismo
+    
+        }
     /**
      * [sorter description]
      * @param  {[type]} a [description]
