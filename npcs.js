@@ -194,7 +194,9 @@ function Npcs() {
             if (user.hp <= 0) {
                 return;
             }
-
+            if (vars.npcs[idNpc].summonedBy  && user.id == vars.npcs[idNpc].summonedBy) {
+                return
+            }
             if (+Date.now() - npc.cooldownParalizado < vars.cooldownParalisisNpc) {
                 return;
             }
