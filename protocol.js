@@ -1343,7 +1343,15 @@ function attackSpell(ws) {
         if (pos.y < 0 || pos.y > 100) {
             return;
         }
-
+            if (vars.datSpell[idSpell].invoca == 1) { 
+            for (i = 1; i<3; i++) {
+                var spawnx = i; var spawny = 0;
+                    if (game.legalPos(spawnx,spawny, vars.personajes[idUser].map))
+                game.invocarNPC(idUser,spawnx,spawny, datSpell.NumNpc);
+               }
+               return
+            }
+            
         var tileSelected = vars.mapData[user.map][pos.y][pos.x];
 
         if (!tileSelected.id) {
