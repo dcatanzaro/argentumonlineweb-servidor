@@ -201,7 +201,46 @@ function Login() {
                                         vars.personajes[ws.id] = personaje;
 
                                         vars.clients[ws.id] = ws;
-
+                                        
+                                        //ANTIPISADAS
+                                        if (vars.mapData[vars.personajes[ws.id].map][vars.personajes[ws.id].pos.y][vars.personajes[ws.id].pos.x].id) {
+                                            var i = 0;
+                                            var z = 1;
+                                            tmpPosX = vars.personajes[ws.id].pos.x;
+                                            tmpPosY = vars.personajes[ws.id].pos.y;
+                                            while (!game.legalPos(tmpPosX, tmpPosY, vars.personajes[ws.id].map)) {
+                                
+                                                if (i == 0) {
+                                                    var tmpPosX = vars.personajes[ws.id].pos.x - z;
+                                                    var tmpPosY = vars.personajes[ws.id].pos.y - z;
+                                                } else {
+                                                    tmpPosX++;
+                                                }
+                                
+                                                var filas = (3 * z) - (z - 1);
+                                
+                                                if (i % filas === 0 && i !== 0) {
+                                                    tmpPosY++;
+                                                    tmpPosX = vars.personajes[ws.id].pos.x - z;
+                                                }
+                                
+                                                i++;
+                                
+                                                if (i == (filas * filas)) {
+                                                    i = 0;
+                                                    z++;
+                                                }
+                                
+                                                if (i > 10000) {
+                                                    login.disconnectAllCharacters(ws, account);
+                                                    return
+                                                }
+                                            }
+                                            vars.personajes[ws.id].pos.x = tmpPosX;
+                                            vars.personajes[ws.id].pos.y = tmpPosY;
+                                        }
+                                        // END ANTIPISADAS
+                                        
                                         vars.mapData[vars.personajes[ws.id].map][vars.personajes[ws.id].pos.y][vars.personajes[ws.id].pos.x].id = ws.id;
 
                                         personaje.ip = socket.getIp(ws);
