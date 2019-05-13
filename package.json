@@ -4,12 +4,12 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "bytebuffer": "^4.0.0",
-    "mysql": "^2.9.0",
     "bcrypt-nodejs": "^0.0.3",
-    "ws": "^0.8.0",
+    "bytebuffer": "^5.0.1",
+    "forever": "^1.0.0",
+    "mysql": "^2.9.0",
     "pathfinding": "^0.4.17",
-    "forever": "^0.15.1"
+    "ws": "^7.0.0"
   },
   "devDependencies": {},
   "scripts": {
