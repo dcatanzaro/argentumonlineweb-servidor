@@ -1,4 +1,3 @@
-var forever = require('forever');
 var socket = require('./socket');
 var game = require('./game');
 var database = require('./database');
@@ -89,7 +88,6 @@ function Command() {
 
                         game.worldSave(function(data) {
                             console.log("[COMANDO] Reset");
-                            forever.restart('server.js');
                         });
                     }
                     break;

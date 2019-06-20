@@ -6,10 +6,9 @@
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",
     "bytebuffer": "^5.0.1",
-    "forever": "^1.0.0",
     "mysql": "^2.9.0",
     "pathfinding": "^0.4.17",
-    "ws": "^7.0.0"
+    "ws": "^7.0.1"
   },
   "devDependencies": {},
   "scripts": {
