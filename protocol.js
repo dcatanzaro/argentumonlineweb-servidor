@@ -1343,7 +1343,20 @@ function attackSpell(ws) {
         if (pos.y < 0 || pos.y > 100) {
             return;
         }
-
+            if (vars.datSpell[idSpell].invoca == 1) { // TODO: Crear función para comprobar si hay sitio en el mapa y usarla para tirarItem(), para el antipisadas, y para esto
+            for (i = 1; i<3; i++) {
+                    if (game.legalPos(pos.x + i,pos.y, vars.personajes[idUser].map))
+                game.invocarNPC(idUser,pos.x + i,pos.y, datSpell.NumNpc);
+                user.mana -= datSpell.manaRequired;
+                game.loopArea(ws, function(client) {
+                       // TODO: handleProtocol.FX encima de los npcs, no del usuario
+                        handleProtocol.dialog(ws.id, datSpell.palabrasMagicas, '', '#E69500', 0, vars.clients[client.id]);
+                });
+                handleProtocol.updateMana(user.mana, ws);
+               }
+               return
+            }
+            
         var tileSelected = vars.mapData[user.map][pos.y][pos.x];
 
         if (!tileSelected.id) {

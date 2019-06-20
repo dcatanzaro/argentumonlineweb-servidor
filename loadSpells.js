@@ -239,6 +239,15 @@ fs.readFile('hechizos.dat', 'UTF-8', function read(err, data) {
         if (palabrasMagicas) {
             vars.datSpell[spellIndex].palabrasMagicas = palabrasMagicas.trim();
         }
+        responseSplit = response.split('Invoca=');
+        var invoca = responseSplit[1];
+
+        if (invoca) {
+            responseSplit = response.split('NumNpc=');
+            vars.datSpell[spellIndex].NumNpc = responseSplit[1];
+            
+            vars.datSpell[spellIndex].invoca = parseInt(invoca.trim());
+        }
     }
 
     console.log("[INFO | " + funct.dateFormat(new Date(), "%d-%m-%Y %H:%M:%S") + "] Hechizos cargados.");
